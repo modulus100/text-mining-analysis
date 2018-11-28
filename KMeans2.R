@@ -3,9 +3,9 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
   source("mahalanobisDistance.R")
   source("minkovskiDistance.R")
   source("canderraDistance.R")
-  source("CosineDistance.R")
-  source("ComputeNewCentroids.R")
-  source("ClosestClusterNumber.R")
+  source("cosineDistance.R")
+  source("computeNewCentroids.R")
+  source("closestClusterNumber.R")
   
   # max number of iterations
   limit <- 100
@@ -62,5 +62,5 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
     cnt <- cnt + 1
   }
   # return updated dataset
-  list("dataset" = dataset, "centoids" = centroids)
+  list("dataset" = dataset, "centoids" = centroids, "cluster" = clusterSet)
 }

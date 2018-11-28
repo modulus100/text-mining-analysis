@@ -1,7 +1,7 @@
 # Init custom functions
-source("InitialTextProcessing.R")
-source("CosineDistance.R")
-source("KMeans2.R")
+source("initialTextProcessing.R")
+source("cosineDistance.R")
+source("kMeans2.R")
 
 # Get processed data for analysis
 initialDataSet <- initialTextProcessing()
@@ -18,7 +18,7 @@ distance <- cosineDistance(dataSet[1,], dataSet[2,])
 # K-means
 kmData <- kmeans2(dataSet, 2)
 
-
+print(kmData)
 # library(fpc)
 # library(cluster)
 # d <- dist(t(transposedDataSet), method="manhattan")
