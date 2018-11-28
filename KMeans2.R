@@ -19,12 +19,13 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
   
   # saves temporary cluster values
   tempClusterSet <- matrix(1, numSamples, 1)
-  print(centroids)
   
+  # goes through the each dataset sample
   while(cnt < limit || all.equal(dataset[,dataDimension], tempClusterSet) == FALSE) {
     tempClusterSet <- dataset[,dataDimension]
     indexSamples <- 1
     
+    # goes throug
     for (indexSamples in 1:numSamples) {
       indexCentroids <- 1
       distanceVector <- numeric(k)
@@ -35,23 +36,23 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
         centroid <- centroids[indexCentroids,]
         
         switch(distanceMethod,
-               mahal = {
-                 distanceVector[indexCentroids] <- mahalanobisDistance(centroid, sample, dataset[,-dataDimension])
-               },
-               minkovski = {
-                 p <- 3
-                 distanceVector[indexCentroids] <- minkovskiDistance(centroid, sample, p)
-               },
-               canderra = {
-                 distanceVector[indexCentroids] <- canderraDistance(centroid, sample)
-               },
-               cosine = {
-                 distanceVector[indexCentroids] <- cosineDistance(centroid, sample)
-               },
-               {
-                 # default
-                 distanceVector[indexCentroids] <- cosineDistance(centroid, sample)
-               })
+          mahal = {
+           distanceVector[indexCentroids] <- mahalanobisDistance(centroid, sample, dataset[,-dataDimension])
+          },
+          minkovski = {
+           p <- 3
+           distanceVector[indexCentroids] <- minkovskiDistance(centroid, sample, p)
+          },
+          canderra = {
+           distanceVector[indexCentroids] <- canderraDistance(centroid, sample)
+          },
+          cosine = {
+           distanceVector[indexCentroids] <- cosineDistance(centroid, sample)
+          },
+          {
+           # default
+           distanceVector[indexCentroids] <- cosineDistance(centroid, sample)
+          })
       }
       
       # closestClusterNumber returns cluster number, maps vector to a certain cluster

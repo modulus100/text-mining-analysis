@@ -4,7 +4,7 @@ computeNewCentroids <- function(dataset, k) {
   dataDimension <- dim(dataset)[2]
   newCentroids <- matrix(0, k, dataDimension)
   
-  # go trought all the dataset
+  # go trought all the dataset samples
   while(cnt < k + 1) {
     sumVector <- numeric(dataDimension - 1)
     indexSamples <- 1
@@ -37,6 +37,6 @@ computeNewCentroids <- function(dataset, k) {
     
     cnt <- cnt + 1
   }
-  # return new centroids
-  newCentroids
+  
+  return(newCentroids)
 }
