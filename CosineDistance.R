@@ -11,13 +11,9 @@ cosineDistance <- function(v1, v2) {
     return(sum)
   }
   
-  # summarizes root vector values
-  sumSquareVectorValues <- function(v) {
-    sum <- 0
-    for (i in 1:length(v)) { sum <- sum + v[i] * v[i] }
-    return(sum)
-  }
-  
   # calculates cosine distance 
-  return(1 - (sumMultipliedVectorValues(v1, v2) / (sqrt(sumSquareVectorValues(v1)) * sqrt(sumSquareVectorValues(v2)))))
+  similirarity <- sumMultipliedVectorValues(v1, v2) / (sqrt(sumMultipliedVectorValues(v1, v1)) 
+                                                       * sqrt(sumMultipliedVectorValues(v2, v2)))
+  distance <- 1 - similirarity
+  return(distance)
 }
