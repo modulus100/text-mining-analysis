@@ -21,7 +21,8 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
   clusterSet <- matrix(1, numSamples, 1)
   
   # goes through the each dataset sample
-  while(cnt < limit || all.equal(dataset[,dataDimension], tempClusterSet) == FALSE) {
+  # conditions for the stoping clustering recalculation
+  while (cnt < limit || all.equal(dataset[,dataDimension], tempClusterSet) == FALSE) {
     tempClusterSet <- clusterSet # dataset[,dataDimension]
     
     # goes throug
@@ -54,7 +55,6 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
       }
       
       # closestClusterNumber returns cluster number, maps vector to a certain cluster
-      #dataset[indexSamples,][dataDimension] <- closestClusterNumber(distanceVector)
       clusterSet[indexSamples] <- closestClusterNumber(distanceVector)
     }
     
