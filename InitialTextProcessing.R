@@ -8,7 +8,7 @@ initialTextProcessing <- function() {
   
   # load available documents
   docs <- VCorpus(DirSource(cname))   
-  print(summary(docs))
+  #print(summary(docs))
   
   # Preprocessing
   docs <- tm_map(docs,removePunctuation)   
@@ -21,18 +21,18 @@ initialTextProcessing <- function() {
   
   dtm <- DocumentTermMatrix(docs)   
   
-  print(dtm)
+  #print(dtm)
   
   freq <- colSums(as.matrix(dtm))   
   length(freq)
   dtms <- removeSparseTerms(dtm, 0.1)
-  print(dtms)
+  #print(dtms)
   
   # table after removing sparse terms
   freq <- colSums(as.matrix(dtms))  
-  print(freq)
+  #print(freq)
   
-  print(findFreqTerms(dtm, lowfreq=30))
+  #print(findFreqTerms(dtm, lowfreq=30))
   dtms <- removeSparseTerms(dtm, 0.15)
   return(dtms)
 }
