@@ -18,16 +18,14 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
   centroids <- dataset[sample(numSamples,size=k,replace=FALSE),]
   
   # saves temporary cluster values
-  tempClusterSet <- matrix(1, numSamples, 1)
+  clusterSet <- matrix(1, numSamples, 1)
   
   # goes through the each dataset sample
   while(cnt < limit || all.equal(dataset[,dataDimension], tempClusterSet) == FALSE) {
-    tempClusterSet <- dataset[,dataDimension]
-    indexSamples <- 1
+    tempClusterSet <- clusterSet # dataset[,dataDimension]
     
     # goes throug
     for (indexSamples in 1:numSamples) {
-      indexCentroids <- 1
       distanceVector <- numeric(k)
       sample <- dataset[indexSamples,]
       
@@ -37,7 +35,7 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
         
         switch(distanceMethod,
           mahal = {
-           distanceVector[indexCentroids] <- mahalanobisDistance(centroid, sample, dataset[,-dataDimension])
+           distanceVector[indexCentroids] <- mahalanobisDistance(centroid, sample, dataset)
           },
           minkovski = {
            p <- 3
@@ -56,10 +54,11 @@ kmeans2 <- function(dataset, k, distanceMethod="cosine") {
       }
       
       # closestClusterNumber returns cluster number, maps vector to a certain cluster
-      dataset[indexSamples,][dataDimension] <- closestClusterNumber(distanceVector)
+      #dataset[indexSamples,][dataDimension] <- closestClusterNumber(distanceVector)
+      clusterSet[indexSamples] <- closestClusterNumber(distanceVector)
     }
     
-    centroids <- computeNewCentroids(dataset, k)
+    centroids <- computeNewCentroids(dataset, clusterSet, k)
     cnt <- cnt + 1
   }
   # return updated dataset

@@ -16,7 +16,7 @@ dataSet <- as.matrix(transposedDataSet)
 distance <- cosineDistance(dataSet[1,], dataSet[2,])
 
 # K-means
-km <- kmeans2(dataSet, 2)
+kmData <- kmeans2(dataSet, 2)
 
 
 # library(fpc)
