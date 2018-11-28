@@ -1,5 +1,7 @@
+# Init custom functions
 source("InitialTextProcessing.R")
 source("CosineDistance.R")
+source("KMeans2.R")
 
 # Get processed data for analysis
 initialDataSet <- initialTextProcessing()
@@ -13,10 +15,12 @@ dataSet <- as.matrix(transposedDataSet)
 # Cosine distance
 distance <- cosineDistance(dataSet[1,], dataSet[2,])
 
-
 # K-means
-library(fpc)
-library(cluster)
+km <- kmeans2(dataSet, 2)
+
+
+# library(fpc)
+# library(cluster)
 # d <- dist(t(transposedDataSet), method="manhattan")
 # kfit <- kmeans(d, 2)
 # clusplot(as.matrix(d), kfit$cluster, color=T, shade=T, labels=2, lines=0)
