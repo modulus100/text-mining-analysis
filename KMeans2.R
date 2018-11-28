@@ -1,5 +1,8 @@
-kmeans2 <- function(dataset, k) {
+kmeans2 <- function(dataset, k, distanceMethod="cosine") {
   # include custom fuctions
+  source("mahalanobisDistance.R")
+  source("minkovskiDistance.R")
+  source("canderraDistance.R")
   source("CosineDistance.R")
   source("ComputeNewCentroids.R")
   source("ClosestClusterNumber.R")
@@ -22,35 +25,37 @@ kmeans2 <- function(dataset, k) {
     tempClusterSet <- dataset[,dataDimension]
     indexSamples <- 1
     
-    while(indexSamples < 8 + 1) { #numSamples
+    for (indexSamples in 1:numSamples) {
       indexCentroids <- 1
       distanceVector <- numeric(k)
-      sample <- dataset[indexSamples,][1:lastElementPos]
+      sample <- dataset[indexSamples,]
       
-      while(indexCentroids < k + 1) {
-        centroid <- centroids[indexCentroids,][1:lastElementPos]
+      # calculate distance between each centroid(vector) and a given samle(vector)
+      for (indexCentroids in 1:k) {
+        centroid <- centroids[indexCentroids,]
         
         switch(distanceMethod,
                mahal = {
-                 # distanceVector[indexCentroids] <- mahalanobisDistance(centroid, sample, dataset[,-dataDimension])
+                 distanceVector[indexCentroids] <- mahalanobisDistance(centroid, sample, dataset[,-dataDimension])
                },
                minkovski = {
                  p <- 3
-                 # distanceVector[indexCentroids] <- minkovskiDistance(centroid, sample, p)
+                 distanceVector[indexCentroids] <- minkovskiDistance(centroid, sample, p)
                },
                canderra = {
-                 # distanceVector[indexCentroids] <- canderraDistance(centroid, sample)
+                 distanceVector[indexCentroids] <- canderraDistance(centroid, sample)
+               },
+               cosine = {
+                 distanceVector[indexCentroids] <- cosineDistance(centroid, sample)
                },
                {
                  # default
-                 # distanceVector[indexCentroids] <- canderraDistance(centroid, sample)
+                 distanceVector[indexCentroids] <- cosineDistance(centroid, sample)
                })
-        
-        indexCentroids <- indexCentroids + 1
       }
       
+      # closestClusterNumber returns cluster number, maps vector to a certain cluster
       dataset[indexSamples,][dataDimension] <- closestClusterNumber(distanceVector)
-      indexSamples <- indexSamples + 1
     }
     
     centroids <- computeNewCentroids(dataset, k)
