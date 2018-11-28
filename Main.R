@@ -1,4 +1,5 @@
 source("InitialTextProcessing.R")
+source("CosineDistance.R")
 
 # Get processed data for analysis
 initialDataSet <- initialTextProcessing()
@@ -10,7 +11,7 @@ transposedDataSet <- t(initialDataSet)
 dataSet <- as.matrix(transposedDataSet)
 
 # Cosine distance
-
+distance <- cosineDistance(dataSet[1,], dataSet[2,])
 
 
 # K-means
