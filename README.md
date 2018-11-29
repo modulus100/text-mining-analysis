@@ -4,7 +4,8 @@
 Original repository https://github.com/modulus100/text-mining-analysis
 This project is intended for learning a fundamentals of machine learning and data mining
 algorithms. All the code is written using a pure R programming language. 
-The project contains an implementation of the following algorithms.
+The project contains an implementation of the following algorithms. I provided information
+ source references in the code as well, there are commented urls.
 
 * Cosine distance
 * k-means algorithm
