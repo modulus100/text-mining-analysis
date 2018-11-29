@@ -42,6 +42,8 @@ plotKMeans(kmData)
  **plotKMeans** - plots all the data point by point
  
  **initialTextProcessing** - preprocessing function which helps to work with a clean text data
+ 
+ **main.R** - the main file where the analysis begins
 
 ### Used information
 
