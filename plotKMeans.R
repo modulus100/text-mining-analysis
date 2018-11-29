@@ -13,7 +13,6 @@ plotKMeans <- function(kmeansData) {
     point <- getFormattedMatrixPoint(kmeansData$dataset[sampleIndex,])
     colour <- switch(kmeansData$cluster[sampleIndex],"red","green","blue")
     plot(point, col=colour, type="p", xlim=c(0,10), ylim=c(-2,24))
-    text(point, textWors[sampleIndex], cex=1, pos=4, col=colour)
     par(new=TRUE)
   }
   

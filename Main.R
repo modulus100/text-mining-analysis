@@ -3,6 +3,7 @@ source("initialTextProcessing.R")
 source("cosineDistance.R")
 source("kMeans2.R")
 source("plotKMeans.R")
+source("desicionBoundary.R")
 
 # Get processed data for analysis
 initialDataSet <- initialTextProcessing()
@@ -20,9 +21,9 @@ distance <- cosineDistance(dataSet[1,], dataSet[2,])
 kmData <- kmeans2(dataSet, 2)
 plotKMeans(kmData)
 
-#print(kmData)
-# library(fpc)
-# library(cluster)
-# d <- dist(t(transposedDataSet), method="manhattan")
-# kfit <- kmeans(d, 2)
-# clusplot(as.matrix(d), kfit$cluster, color=T, shade=T, labels=2, lines=0)
+# Decision boundary
+# https://www.coursera.org/lecture/machine-learning/decision-boundary-WuL1H
+# draw desicionBoundary
+desicionBoundary(kmData)
+
+
