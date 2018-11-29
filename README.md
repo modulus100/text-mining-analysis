@@ -44,6 +44,8 @@ plotKMeans(kmData)
  **initialTextProcessing** - preprocessing function which helps to work with a clean text data
  
  **main.R** - the main file where the analysis begins
+ 
+ **decisionBoundary.R** is intended for decision boundary part, analysis and plot
 
 ### Used information
 
