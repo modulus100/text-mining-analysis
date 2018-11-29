@@ -18,7 +18,8 @@ Please specify your path for **samples** in
 cname <- file.path("yourLocalPathToProject/samples")
 ```
 
-**Distances**
+**Distances**  
+Cosine distance is a good choice whenever a distance must be calculated in a high dimension environment.
 ```
 distance <- cosineDistance(dataSet[1,], dataSet[2,]))
 ```
@@ -38,6 +39,9 @@ plotKMeans(kmData)
 **computeNewCentroids** - recalculates and returns new centroids whithin each iteration during 
  the kmeans computing
  
+ **plotKMeans** - plots all the data point by point
+ 
+ **initialTextProcessing** - preprocessing function which helps to work with a clean text data
 
 ### Used information
 
@@ -50,4 +54,3 @@ https://habr.com/post/199060/
 https://habr.com/post/101338/  
 https://www.coursera.org/lecture/cluster-analysis/6-2-clustering-evaluation-measuring-clustering-quality-RJJfM  
 
-Contact: aleksandr.madisson@linnworks.com
