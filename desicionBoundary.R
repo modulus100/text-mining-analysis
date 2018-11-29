@@ -38,6 +38,7 @@ desicionBoundary <- function(kmData) {
         if (tempAngle > maxAngle) {
           maxAngle <- tempAngle
           maxVector <- kmData$dataset[sampleIndex,]
+          print(maxVector)
         }
       }
     }
@@ -46,4 +47,6 @@ desicionBoundary <- function(kmData) {
   # draw boundary
   abline(a=-minVector[1], b=maxVector[2] + offset, col = 2)
   par(new=TRUE)
+  print(minVector[1])
+  print(maxVector[2])
 }
